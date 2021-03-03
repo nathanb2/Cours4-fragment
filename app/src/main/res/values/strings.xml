@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Cours4-fragment</string>
+    <string name="je_suis_un_fragment">Je suis un fragment</string>
+    <string name="enter_your_name">Enter your name</string>
+    <string name="your_name">Your name</string>
+    <string name="please_add_fragment_before">Please add Fragment bofore</string>
+</resources>
