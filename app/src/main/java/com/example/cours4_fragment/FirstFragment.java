@@ -1,6 +1,7 @@
 package com.example.cours4_fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ public class FirstFragment extends Fragment {
 
     public static final String TAG = FirstFragment.class.getSimpleName();
     private static final String NAME_KEY = "NAME_KEY";
+    private static final String USER_KEY = "USER_KEY";
     private String name;
     private TextView nameTv;
 
@@ -25,16 +27,19 @@ public class FirstFragment extends Fragment {
      * Le seul moyen de sauvegarder nos parametre et les recuperer dans le onviewcreated est de les passer en Arguments avec la methode setArgument (de la classe mere Fragment)
      * Dans un Bundle qu'il sait sauvegarder au dela de la destruction de l'instance du fragment precedement et le reatribuer a la nouvelle instance
      * @param name le nom que l'on souhaite afficher a l'ouverture du fragment
+     * @param user parametre de type Objet User pour montrer comment on peut insere un objet dans un Bundle (si il est Parcelable)
      * @return une nouvelle instance du fragment FirsFragment
      */
-    public static FirstFragment newInstance(String name) {
+    public static FirstFragment newInstance(String name, User user) {
         //creation de l'instance du fragment
         FirstFragment firstFragment = new FirstFragment();
         //creation du Bundle qui est comme une valise ou l'on peut inserer des donnees (primitif uniquement)
         Bundle bundle = new Bundle();
-        //on iinsere la valeur du parametre name dans notre bundle et l'etiquette avec une clefs afin de pouvoir l'identifier lorsque l'on voudra le recuperer
+        //on insert la valeur du parametre name dans notre bundle et l'etiquette avec une clefs afin de pouvoir l'identifier lorsque l'on voudra le recuperer
         bundle.putString(NAME_KEY, name);
-        //on setle bundle au fragment
+        //on insert dans le bundle un OBJECT de type User car User est Parcelable
+        bundle.putParcelable(USER_KEY, user);
+        //on set le bundle au fragment
         firstFragment.setArguments(bundle);
         return firstFragment;
     }
@@ -66,6 +71,15 @@ public class FirstFragment extends Fragment {
         if (getArguments() != null && getArguments().containsKey(NAME_KEY)) {
             //Nous recuperons la valeur sauvegarder dans le Bundle sous la clefs NAME_KEY
             name = getArguments().getString(NAME_KEY);
+        }
+
+        if (getArguments() != null && getArguments().containsKey(USER_KEY)) {
+            //Nous recuperons la valeur sauvegarder dans le Bundle sous la clefs USER_KEY qui est du type Objet User mais implementant Parcelable
+            //il peut etre parse automatiquement en un objet plus simple que le Bundle accepte
+            User user = getArguments().getParcelable(USER_KEY);
+            if (user != null){
+                Log.d(TAG, "onViewCreated: user name : " + user.getName() + " age de : " + user.getAge());
+            }
         }
 
         initVars(view);

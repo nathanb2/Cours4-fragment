@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         // FragmentManager est une variable de la classe mere activity, c'est un objet qui permet de gerer l'affichage des fragments d'une activity
         FragmentManager fragmentManager = getSupportFragmentManager();
         //je creer une instance de mon fragment et lui passe mName en parametre
-        FirstFragment firstFragment = FirstFragment.newInstance(mName);
+        FirstFragment firstFragment = FirstFragment.newInstance(mName, new User("Patrick", 35));
         //je dis au fragment manager de creer une nouvelle transaction qui est d'ajouter un fragment et commit lui dit de realiser la transaction
         //la fonction add prend en parametre :
         // 1: L'id du frameLayout container qui se trouve dans le xml de l'activity
