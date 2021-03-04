@@ -34,5 +34,10 @@ Dans le cas d'un fragment:
 - On insert notre bundle dans le fragment avec la fonction setArguments(Bundle bundle) (fonction setter de la variable mArguments de la class mere fragment et que Androis sait faire survivre au changement d'instance)
 - Dans le onCeate ou le onVwCeated on recupere nos argugments grace a getArguments() et en recuperons nos donnees grace a leurs Key
 
+
+Parcelable
+
+-Pour passer un objet dans un Bundle par exemple il faut pouvoire le convertire en un objet plus simple, afin de faire cela on implement Parcelable dans notre class d'objet (User) et ainsi rend notre objet parcelable
+
 ressources: slide 1.1
 https://drive.google.com/drive/folders/1MRqvBGEDtNtpDyKd8sulMJreFCz1JxgC?usp=sharing
